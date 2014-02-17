@@ -62,8 +62,8 @@ You can return structs, maps, etc... Atlas will output them as JSON for you:
 ```go
 type Person struct { Name, Surname string }
 
-func User (request *atlas.Request) *atlas.Response {
-  return atlas.Success(&Person{request.params.name, request.params.surname})
+func User(request *atlas.Request) *atlas.Response {
+	return atlas.Success(&Person{request.Params["name"], request.Params["surname"]})
 }
 ```
 
