@@ -1,6 +1,19 @@
 ## Atlas
 
-Minimalistic Go Library for Creating JSON API Servers
+Minimalistic Go Library for Creating JSON API Servers.
+
+```go
+import "github.com/azer/atlas"
+
+var api = atlas.New(atlas.Map{ "/": Hello })
+
+func Hello(request *atlas.Request) *atlas.Response {
+	return atlas.Success("Hello World")
+}
+
+api.start(":8080")
+```
+
 
 ## Install
 
@@ -22,7 +35,7 @@ var api = atlas.New(atlas.Map{
 })
 ```
 
-Every route points to a function (atlas.Handler):
+Every route points to a function (atlas.Handler) that takes [*atlas.Request](#requests) and returns a `*Response`. Atlas comes with `Success` and `Error` functions that converts anything to a response:
 
 ```go
 func Hello(request *atlas.Request) *atlas.Response {
