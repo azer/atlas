@@ -2,8 +2,7 @@ package atlas
 
 import "net/http"
 
-
-func (api *API) Route (w http.ResponseWriter, r *http.Request) {
+func (api *API) Route(w http.ResponseWriter, r *http.Request) {
 	match := api.Router.Match(r.URL.Path)
 
 	if match == nil && r.URL.Path == "/" {

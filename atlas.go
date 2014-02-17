@@ -2,7 +2,7 @@ package atlas
 
 import "github.com/azer/url-router"
 
-func New (urls Map) *API {
+func New(urls Map) *API {
 	debug("Initializing a new API server...")
 
 	server := &Server{}

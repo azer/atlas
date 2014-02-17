@@ -11,16 +11,16 @@ type Request struct {
 	Params urlrouter.Params
 
 	Method string
-	Host string
-	URL *url.URL
-	GET bool
-	POST bool
+	Host   string
+	URL    *url.URL
+	GET    bool
+	POST   bool
 
-	Form url.Values
+	Form     url.Values
 	PostForm url.Values
 }
 
-func NewRequest (request *http.Request, params urlrouter.Params) *Request {
+func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 	return &Request{
 		request.Header,
 		params,
