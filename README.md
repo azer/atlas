@@ -8,7 +8,7 @@ Minimalistic Go Library for Creating JSON API Servers
 $ go get github.com/azer/atlas
 ```
 
-## Usage
+## Manual
 
 Create a new API by defining Sinatra-like routes:
 
