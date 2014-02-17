@@ -36,6 +36,13 @@ You can start the API by calling `Start` method:
 api.Start(":8080")
 ```
 
+Or you can provide your own net.Listener and call `Listen`:
+
+```go
+listener, _ := net.Listen("tcp", "0.0.0.0:6666")
+api.Listen(listener)
+```
+
 Atlas will output JSON for you:
 
 ```bash
