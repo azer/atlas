@@ -18,7 +18,7 @@ import (
   "errors"
 )
 
-var api = atlas.API(atlas.Map{
+var api = atlas.New(atlas.Map{
         "/person/:name/:surname": Person,
         "/company/:id": Company,
         "/hello": Hello,
