@@ -13,15 +13,13 @@ $ go get github.com/azer/atlas
 Create a new API by defining Sinatra-like routes:
 
 ```go
-import (
-  "github.com/azer/atlas"
-  "errors"
-)
+import "github.com/azer/atlas"
 
 var api = atlas.New(atlas.Map{
-        "/person/:name/:surname": Person,
-        "/company/:id": Company,
-        "/hello": Hello,
+	"/user/:name/:surname": User,
+	"/company/:id": Company,
+	"/hello": Hello,
+	"/now": Now,
 })
 ```
 
