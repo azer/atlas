@@ -113,6 +113,8 @@ $ curl localhost:8080/company/foobar
 }
 ```
 
+Checkout `examples/` for more info.
+
 ## Debugging
 
 Atlas uses [debug](http://github.com/azer/debug) for logging. Enable verbose mode by:
@@ -120,3 +122,5 @@ Atlas uses [debug](http://github.com/azer/debug) for logging. Enable verbose mod
 ```bash
 DEBUG=* go run my server
 ```
+
+![](https://i.cloudup.com/8uRNKNk9I2.png)
