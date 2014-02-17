@@ -95,9 +95,9 @@ type Person struct {
 
 Atlas also has a handy method to produce errors:
 
-```
-func Company (request *atlas.Request) *atlas.Response {
-  return atlas.Error(200, "Not implemented yet")
+```go
+func Company(request *atlas.Request) *atlas.Response {
+	return atlas.Error(500, "An error occured")
 }
 ```
 
