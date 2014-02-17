@@ -25,8 +25,8 @@ var api = atlas.New(atlas.Map{
 Every route points to a function (atlas.Handler):
 
 ```go
-func Home (request *atlas.Request) *atlas.Response {
-  return atlas.Success("Hello World!")
+func Hello(request *atlas.Request) *atlas.Response {
+	return atlas.Success("Hello World")
 }
 ```
 
