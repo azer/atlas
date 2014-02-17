@@ -19,7 +19,6 @@ var api = atlas.New(atlas.Map{
 	"/user/:name/:surname": User,
 	"/company/:id": Company,
 	"/hello": Hello,
-	"/now": Now,
 })
 ```
 
