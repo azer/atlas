@@ -1,9 +1,6 @@
 package atlas
 
-import (
-	"encoding/json"
-	"errors"
-)
+import "encoding/json"
 
 type Response struct {
 	Code    int
@@ -19,7 +16,7 @@ type ErrorResponseContext struct {
 	Error interface{} `json:"error"`
 }
 
-var NotFound = Error(404, errors.New("404 - Not found."))
+var NotFound = Error(404, "404 - Not found.")
 
 func (response *Response) Stringify() string {
 	parsed, _ := json.MarshalIndent(response.Context, "", "	")
