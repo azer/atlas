@@ -1,6 +1,6 @@
 ## Atlas
 
-Minimalistic JSON API Server for Go.
+Minimalistic Go Library for Creating JSON API Servers
 
 ## Install
 
