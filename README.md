@@ -112,6 +112,28 @@ $ curl localhost:8080/company/foobar
 
 Checkout `examples/` for more info.
 
+## Reference
+
+### Requests
+
+Atlas will pass you its modified version of requests:
+
+```go
+type Request struct {
+	Header map[string][]string
+	Params urlrouter.Params
+
+	Method string
+	Host   string
+	URL    *url.URL
+	GET    bool
+	POST   bool
+
+	Form     url.Values
+	PostForm url.Values
+}
+```
+
 ## Debugging
 
 Atlas uses [debug](http://github.com/azer/debug) for logging. Enable verbose mode by:
