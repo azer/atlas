@@ -2,7 +2,7 @@ package main
 
 import (
   "github.com/azer/atlas"
-	"time"
+  "time"
 )
 
 var api = atlas.New(atlas.Map{
@@ -19,11 +19,11 @@ func main () {
 }
 
 func Hello (request *atlas.Request) *atlas.Response {
-	return atlas.Success("Hello World")
+  return atlas.Success("Hello World")
 }
 
 func Now (request *atlas.Request) *atlas.Response {
-	return atlas.Success(time.Now())
+  return atlas.Success(time.Now())
 }
 
 func User (request *atlas.Request) *atlas.Response {
