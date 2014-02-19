@@ -14,6 +14,19 @@ func Hello(request *atlas.Request) *atlas.Response {
 api.start(":8080")
 ```
 
+It'll output the JSON encoding of whatever is returned from request handlers:
+
+```bash
+$ curl localhost:8080
+{ ok: true, result: "Hello World" }
+```
+
+JSONP is enabled by default:
+
+```bash
+$ curl localhost:8080?callback=foobar
+foobar({ ok: true, result: "Hello World" })
+```
 
 ## Install
 
