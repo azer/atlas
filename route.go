@@ -1,8 +1,8 @@
 package atlas
 
 import (
-	"net/http"
 	"github.com/azer/url-router"
+	"net/http"
 )
 
 func (api *API) Route(w http.ResponseWriter, r *http.Request) {
@@ -13,8 +13,8 @@ func (api *API) Route(w http.ResponseWriter, r *http.Request) {
 	if match == nil {
 		params = urlrouter.Params{}
 	} else {
-	  params = match.Params
-  }
+		params = match.Params
+	}
 
 	request := NewRequest(r, params)
 
