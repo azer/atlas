@@ -10,6 +10,7 @@ var api = atlas.New(atlas.Map{
 	"/company/:id":         Company,
 	"/hello":               Hello,
 	"/now":                 Now,
+	"/querystring":         QueryString,
 })
 
 type Person struct{ Name, Surname string }
@@ -32,4 +33,8 @@ func User(request *atlas.Request) *atlas.Response {
 
 func Company(request *atlas.Request) *atlas.Response {
 	return atlas.Error(500, "An error occured")
+}
+
+func QueryString(request *atlas.Request) *atlas.Response {
+	return atlas.Success(request.Query)
 }

@@ -18,9 +18,12 @@ type Request struct {
 
 	Form     url.Values
 	PostForm url.Values
+	Query    url.Values
 }
 
 func NewRequest(request *http.Request, params urlrouter.Params) *Request {
+	query, _ := url.ParseQuery(request.URL.RawQuery)
+
 	return &Request{
 		request.Header,
 		params,
@@ -33,5 +36,6 @@ func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 
 		request.Form,
 		request.PostForm,
+		query,
 	}
 }

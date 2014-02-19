@@ -24,7 +24,13 @@ func (api *API) Listen(listener net.Listener) {
 	http.Serve(listener, api.Server)
 }
 
-func (api *API) Print(writer http.ResponseWriter, response *Response) {
+func (api *API) Print(writer http.ResponseWriter, request *Request, response *Response) {
 	writer.WriteHeader(response.Code)
-	fmt.Fprintf(writer, response.Stringify())
+	output := response.Stringify()
+
+	if callback, jsonp := request.Query["callback"]; jsonp {
+		output = fmt.Sprintf("%s(%s)", callback[0], output)
+	}
+
+	fmt.Fprintf(writer, output)
 }
