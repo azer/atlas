@@ -140,7 +140,7 @@ Checkout `examples/` for more info.
 
 ## Reference
 
-### Requests
+### Request
 
 Atlas will pass you its modified version of requests:
 
@@ -157,6 +157,18 @@ type Request struct {
 
 	Form     url.Values
 	PostForm url.Values
+	Query    url.Values
+}
+```
+
+### Manual
+
+If you'd like to structure the entire response, including the wrapper, use `Manual` instead of `Success` or `Error`.
+Here is an example of how to do that:
+
+```go
+func Hello(request *atlas.Request) *atlas.Response {
+	return atlas.Manual(200, "Hello World")
 }
 ```
 
