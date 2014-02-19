@@ -140,7 +140,7 @@ Checkout `examples/` for more info.
 
 ## Reference
 
-### Request
+### atlas.Request
 
 Atlas will pass you its modified version of requests:
 
@@ -161,7 +161,7 @@ type Request struct {
 }
 ```
 
-### Manual
+### atlas.Manual
 
 If you'd like to structure the entire response, including the wrapper, use `Manual` instead of `Success` or `Error`.
 Here is an example of how to do that:
@@ -172,13 +172,14 @@ func Hello(request *atlas.Request) *atlas.Response {
 }
 ```
 
-### Listen
+### atlas.API.Listen
 
 To provide your own net.Listener, call `Listen`:
 
 ```go
 listener, _ := net.Listen("tcp", "0.0.0.0:6666")
 
+var api = atlas.New(atlas.Map{ "/": Hello })
 api.Listen(listener)
 ```
 
