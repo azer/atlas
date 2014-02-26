@@ -11,7 +11,7 @@ func Hello(request *atlas.Request) *atlas.Response {
 	return atlas.Success("Hello World")
 }
 
-api.start(":8080")
+api.Start(":8080")
 ```
 
 It'll output the JSON encoding of whatever is returned from request handlers:
