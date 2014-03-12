@@ -23,6 +23,7 @@ type Request struct {
 
 func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 	query, _ := url.ParseQuery(request.URL.RawQuery)
+	_ = request.ParseForm()
 
 	return &Request{
 		request.Header,
