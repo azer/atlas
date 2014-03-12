@@ -11,6 +11,7 @@ var api = atlas.New(atlas.Map{
 	"/hello":               Hello,
 	"/now":                 Now,
 	"/querystring":         QueryString,
+	"/post":                PostName,
 })
 
 type Person struct{ Name, Surname string }
@@ -37,4 +38,8 @@ func Company(request *atlas.Request) *atlas.Response {
 
 func QueryString(request *atlas.Request) *atlas.Response {
 	return atlas.Success(request.Query)
+}
+
+func PostName(request *atlas.Request) *atlas.Response {
+	return atlas.Success(request.PostForm.Get("name"))
 }
