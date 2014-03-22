@@ -123,7 +123,7 @@ Atlas also has a handy method to produce errors:
 
 ```go
 func Company(request *atlas.Request) *atlas.Response {
-	return atlas.Error(500, "An error occured")
+	return atlas.Error(500, "Not Implemented Yet")
 }
 ```
 
