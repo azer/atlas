@@ -106,6 +106,21 @@ $ curl http://localhost:8080/user/john/smith
 }
 ```
 
+Atlas also simplifies JSON form posts:
+
+```bash
+func HelloWorld (request *atlas.Request) *atlas.Response {
+  var data map[string]string
+  err := request.JSONPost(&data)
+  
+  if err != nil {
+    return atlas.Error(500, err)
+  }
+  
+  return atlas.Success(data)
+}
+```
+
 ### Using JSON Tags
 
 If you'd like to modify struct keys for API, here is an example of how to do it:
