@@ -108,7 +108,7 @@ $ curl http://localhost:8080/user/john/smith
 
 Atlas also simplifies JSON form posts:
 
-```bash
+```go
 func HelloWorld (request *atlas.Request) *atlas.Response {
   var data map[string]string
   err := request.JSONPost(&data)
