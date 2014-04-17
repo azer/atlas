@@ -106,7 +106,7 @@ $ curl http://localhost:8080/user/john/smith
 }
 ```
 
-Atlas also simplifies JSON form posts:
+To get JSON form posts parsed;
 
 ```go
 func HelloWorld (request *atlas.Request) *atlas.Response {
