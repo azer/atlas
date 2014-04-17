@@ -12,6 +12,7 @@ var api = atlas.New(atlas.Map{
 	"/now":                 Now,
 	"/querystring":         QueryString,
 	"/post":                PostName,
+	"/json-post":           JSONPost,
 })
 
 type Person struct{ Name, Surname string }
@@ -41,5 +42,16 @@ func QueryString(request *atlas.Request) *atlas.Response {
 }
 
 func PostName(request *atlas.Request) *atlas.Response {
-	return atlas.Success(request.PostForm.Get("name"))
+	return atlas.Success(request.Form.Get("name"))
+}
+
+func JSONPost(request *atlas.Request) *atlas.Response {
+	var data map[string]string
+	err := request.JSONPost(&data)
+
+	if err != nil {
+		return atlas.Error(500, err)
+	}
+
+	return atlas.Success(data["name"])
 }

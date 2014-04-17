@@ -4,6 +4,7 @@ import (
 	"github.com/azer/url-router"
 	"net/http"
 	"net/url"
+	"encoding/json"
 )
 
 type Request struct {
@@ -21,9 +22,23 @@ type Request struct {
 	Query    url.Values
 }
 
+func (request *Request) JSONPost(value interface{}) error {
+	for key, _ := range request.Form {
+		err := json.Unmarshal([]byte(key), value)
+
+		if err != nil {
+			return err
+		}
+
+		break
+	}
+
+	return nil
+}
+
 func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 	query, _ := url.ParseQuery(request.URL.RawQuery)
-	_ = request.ParseForm()
+	request.ParseForm()
 
 	return &Request{
 		request.Header,
