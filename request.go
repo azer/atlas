@@ -25,8 +25,7 @@ type Request struct {
 }
 
 func (request *Request) JSONPost(value interface{}) error {
-	decoder := json.NewDecoder(request.Body)
-	return decoder.Decode(&value)
+	return json.NewDecoder(request.Body).Decode(&value)
 }
 
 func NewRequest(request *http.Request, params urlrouter.Params) *Request {

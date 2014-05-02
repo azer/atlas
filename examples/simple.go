@@ -53,5 +53,5 @@ func JSONPost(request *atlas.Request) *atlas.Response {
 		return atlas.Error(500, err)
 	}
 
-	return atlas.Success(data["name"])
+	return atlas.Success(data)
 }
