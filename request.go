@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"encoding/json"
+	"io"
 )
 
 type Request struct {
@@ -17,29 +18,21 @@ type Request struct {
 	GET    bool
 	POST   bool
 
+	Body     io.ReadCloser
 	Form     url.Values
 	PostForm url.Values
 	Query    url.Values
 }
 
 func (request *Request) JSONPost(value interface{}) error {
-	for key, _ := range request.Form {
-		err := json.Unmarshal([]byte(key), value)
-
-		if err != nil {
-			return err
-		}
-
-		break
-	}
-
-	return nil
+	decoder := json.NewDecoder(request.Body)
+	return decoder.Decode(&value)
 }
 
 func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 	query, _ := url.ParseQuery(request.URL.RawQuery)
-	request.ParseForm()
 
+	request.ParseForm()
 	return &Request{
 		request.Header,
 		params,
@@ -50,6 +43,7 @@ func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 		request.Method == "GET",
 		request.Method == "POST",
 
+		request.Body,
 		request.Form,
 		request.PostForm,
 		query,
