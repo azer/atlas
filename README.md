@@ -172,6 +172,7 @@ type Request struct {
 	GET    bool
 	POST   bool
 
+	Body     io.ReadCloser
 	Form     url.Values
 	PostForm url.Values
 	Query    url.Values
