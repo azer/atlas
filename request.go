@@ -5,22 +5,15 @@ import (
 	"net/http"
 	"net/url"
 	"encoding/json"
-	"io"
 )
 
 type Request struct {
-	Header map[string][]string
+	*http.Request
 	Params urlrouter.Params
 
-	Method string
-	Host   string
-	URL    *url.URL
 	GET    bool
 	POST   bool
 
-	Body     io.ReadCloser
-	Form     url.Values
-	PostForm url.Values
 	Query    url.Values
 }
 
@@ -33,18 +26,10 @@ func NewRequest(request *http.Request, params urlrouter.Params) *Request {
 
 	request.ParseForm()
 	return &Request{
-		request.Header,
-		params,
-
-		request.Method,
-		request.Host,
-		request.URL,
-		request.Method == "GET",
-		request.Method == "POST",
-
-		request.Body,
-		request.Form,
-		request.PostForm,
-		query,
+		Request: request,
+		Params: params,
+		GET: request.Method == "GET",
+		POST: request.Method == "POST",
+		Query: query,
 	}
 }
