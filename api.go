@@ -15,12 +15,12 @@ type API struct {
 }
 
 func (api *API) Start(addr string) {
-	debug("Starting on %s", addr)
+	log.Info("Starting on %s", addr)
 	http.ListenAndServe(addr, api.Server)
 }
 
 func (api *API) Listen(listener net.Listener) {
-	debug("Listening on %s", listener.Addr())
+	log.Info("Listening on %s", listener.Addr())
 	http.Serve(listener, api.Server)
 }
 

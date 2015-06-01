@@ -24,12 +24,10 @@ func (api *API) Route(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if match == nil {
-		debug("Unable to match %s", r.URL.Path)
+		log.Error("No routes match %s", r.URL.Path)
 		api.Print(w, request, NotFound)
 		return
 	}
-
-	debug("Matched %s with %s", r.URL.Path, match.Pattern)
 
 	handler := api.URLs[match.Pattern]
 

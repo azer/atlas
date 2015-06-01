@@ -1,9 +1,14 @@
 package atlas
 
-import "github.com/azer/url-router"
+import (
+	"github.com/azer/logger"
+	"github.com/azer/url-router"
+)
+
+var log = logger.New("atlas")
 
 func New(urls Map) *API {
-	debug("Initializing a new API server...")
+	log.Info("Initializing a new API server...")
 
 	server := &Server{}
 	index := NewIndex(urls)
