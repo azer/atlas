@@ -3,8 +3,10 @@ package atlas
 import "encoding/json"
 
 type Response struct {
-	Code    int
-	Context interface{}
+	Code   int
+	Result interface{}
+	Output []byte
+	IsJSON bool
 }
 
 type SuccessResponseContext struct {
@@ -16,27 +18,12 @@ type ErrorResponseContext struct {
 	Error interface{} `json:"error"`
 }
 
-var NotFound = Error(404, "404 - Not found.")
+func (response *Response) JSON() (string, error) {
+	parsed, err := json.MarshalIndent(response.Result, "", "	")
 
-func (response *Response) Stringify() string {
-	parsed, _ := json.MarshalIndent(response.Context, "", "	")
-	return string(parsed)
-}
-
-func Manual(code int, anything interface{}) *Response {
-	return &Response{code, anything}
-}
-
-func Success(anything interface{}) *Response {
-	return &Response{
-		200,
-		&SuccessResponseContext{anything, true},
+	if err != nil {
+		return "", err
 	}
-}
 
-func Error(code int, err interface{}) *Response {
-	return &Response{
-		code,
-		&ErrorResponseContext{err},
-	}
+	return string(parsed), nil
 }

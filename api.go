@@ -25,12 +25,33 @@ func (api *API) Listen(listener net.Listener) {
 }
 
 func (api *API) Print(writer http.ResponseWriter, request *Request, response *Response) {
-	writer.WriteHeader(response.Code)
-	output := response.Stringify()
+	if response.IsJSON {
+		api.PrintJSON(writer, request, response)
+		return
+	}
 
-	if callback, jsonp := request.Query["callback"]; jsonp {
+	contentType := http.DetectContentType(response.Output)
+
+	writer.WriteHeader(response.Code)
+	writer.Header().Set("Content-Type", contentType)
+	writer.Write(response.Output)
+}
+
+func (api *API) PrintJSON(writer http.ResponseWriter, request *Request, response *Response) {
+	output, err := response.JSON()
+	contentType := "application/json"
+
+	if err != nil {
+		output, _ = InternalError.JSON()
+		return
+	}
+
+	if callback, isJSONP := request.Query["callback"]; isJSONP {
+		contentType = "application/javascript"
 		output = fmt.Sprintf("%s(%s)", callback[0], output)
 	}
 
+	writer.WriteHeader(response.Code)
+	writer.Header().Set("Content-Type", contentType)
 	fmt.Fprintf(writer, output)
 }

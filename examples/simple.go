@@ -14,6 +14,7 @@ var api = atlas.New(atlas.Map{
 	"/post":                PostName,
 	"/json-post":           JSONPost,
 	"/ip":                  IP,
+	"/html":                HTML,
 })
 
 type Person struct{ Name, Surname string }
@@ -35,7 +36,7 @@ func User(request *atlas.Request) *atlas.Response {
 }
 
 func Company(request *atlas.Request) *atlas.Response {
-	return atlas.Error(500, "An error occured")
+	return atlas.Error(500, "You should see an error.")
 }
 
 func QueryString(request *atlas.Request) *atlas.Response {
@@ -59,4 +60,8 @@ func JSONPost(request *atlas.Request) *atlas.Response {
 
 func IP(request *atlas.Request) *atlas.Response {
 	return atlas.Success(request.RemoteAddr)
+}
+
+func HTML(request *atlas.Request) *atlas.Response {
+	return atlas.Custom([]byte("<h1>hello world</h1>"))
 }
