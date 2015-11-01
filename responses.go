@@ -1,7 +1,9 @@
 package atlas
 
-var NotFound = Error(404, "404 - Not found.")
-var InternalError = Error(500, "500 - Internal Server Error")
+var (
+	NotFound      = Error(404, "404 - Not found.")
+	InternalError = Error(500, "500 - Internal Server Error")
+)
 
 func Manual(code int, anything interface{}) *Response {
 	return &Response{code, anything, nil, true}

@@ -7,11 +7,11 @@ type Index struct {
 	EndPoints []string `json:"endpoints"`
 }
 
-func NewIndex(urls Map) *Response {
-	patterns := make([]string, len(urls))
+func NewIndex(urls *URLs) *Response {
+	patterns := make([]string, len(*urls))
 
 	i := 0
-	for pattern := range urls {
+	for pattern := range *urls {
 		patterns[i] = pattern
 		i++
 	}

@@ -5,7 +5,7 @@ Minimalistic Go Library for Creating JSON API Servers.
 ```go
 import "github.com/azer/atlas"
 
-var api = atlas.New(atlas.Map{ "/": Hello })
+var api = atlas.New(atlas.URLs{ "/": Hello })
 
 func Hello(request *atlas.Request) *atlas.Response {
 	return atlas.Success("Hello World")
@@ -41,7 +41,7 @@ Create a new API by defining Sinatra-like routes:
 ```go
 import "github.com/azer/atlas"
 
-var api = atlas.New(atlas.Map{
+var api = atlas.New(&atlas.URLs{
 	"/user/:name/:surname": User,
 	"/company/:id": Company,
 	"/hello": Hello,
@@ -114,11 +114,11 @@ To read JSON form posts easily;
 func HelloWorld (request *atlas.Request) *atlas.Response {
   var data map[string]string
   err := request.JSONPost(&data)
-  
+
   if err != nil {
     return atlas.Error(500, err)
   }
-  
+
   return atlas.Success(data)
 }
 ```
@@ -197,7 +197,7 @@ To provide your own net.Listener, call `Listen`:
 ```go
 listener, _ := net.Listen("tcp", "0.0.0.0:6666")
 
-var api = atlas.New(atlas.Map{ "/": Hello })
+var api = atlas.New(&atlas.URLs{ "/": Hello })
 api.Listen(listener)
 ```
 

@@ -7,14 +7,14 @@ import (
 
 var log = logger.New("atlas")
 
-func New(urls Map) *API {
+func New(urls *URLs) *API {
 	log.Info("Initializing a new API server...")
 
 	server := &Server{}
 	index := NewIndex(urls)
 	router := urlrouter.New()
 
-	for pattern, _ := range urls {
+	for pattern, _ := range *urls {
 		router.Add(pattern)
 	}
 

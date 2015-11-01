@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var api = atlas.New(atlas.Map{
+var api = atlas.New(&atlas.URLs{
 	"/user/:name/:surname": User,
 	"/company/:id":         Company,
 	"/hello":               Hello,

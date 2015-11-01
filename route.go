@@ -29,7 +29,7 @@ func (api *API) Route(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	handler := api.URLs[match.Pattern]
+	handler := (*api.URLs)[match.Pattern]
 
 	api.Print(w, request, handler(request))
 }

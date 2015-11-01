@@ -8,7 +8,7 @@ import (
 )
 
 type API struct {
-	URLs   Map
+	URLs   *URLs
 	Router urlrouter.Router
 	Server *Server
 	Index  *Response

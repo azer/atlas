@@ -2,7 +2,7 @@ package atlas
 
 import "net/http"
 
-type Map map[string]Handler
+type URLs map[string]Handler
 type Handler func(request *Request) *Response
 
 type Server struct {
