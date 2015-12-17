@@ -1,6 +1,6 @@
 ## Atlas
 
-Minimalistic Go Library for Creating JSON API Servers.
+Minimalistic Go Library for Creating JSON API Servers. (Deprecated: [labstack/echo](http://github.com/labstack/echo) is much better)
 
 ```go
 import "github.com/azer/atlas"
